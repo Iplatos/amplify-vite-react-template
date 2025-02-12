@@ -1,0 +1,25 @@
+.buttonBlock {
+  display: flex;
+  flex-direction: row;
+  width: 63%;
+  gap: 20px;
+}
+.buttonBlock button {
+  background-color: green;
+}
+.mainPageCardList {
+  margin-top: 100px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  width: 90%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.mainPageBlock {
+  width: 100%;
+  display: flex;
+  margin-top: 150px;
+  align-items: center;
+  flex-direction: column;
+}

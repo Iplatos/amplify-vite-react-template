@@ -1,0 +1,16 @@
+.postsBlock {
+  width: 100%;
+  display: flex;
+  margin-top: 150px;
+  align-items: center;
+  flex-direction: column;
+}
+.cardList {
+  margin-top: 100px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  width: 90%;
+  flex-wrap: wrap;
+  justify-content: center;
+}

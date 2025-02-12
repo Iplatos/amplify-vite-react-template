@@ -1,40 +1,74 @@
-import { useEffect, useState } from "react";
-import type { Schema } from "../amplify/data/resource";
-import { generateClient } from "aws-amplify/data";
-
-const client = generateClient<Schema>();
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Posts } from './components/posts/Posts'
+import { Header } from './components/header/Header'
+import { MainPage } from './components/mainPage/MainPage'
 
 function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  // const navigate = useNavigate()
 
-  useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
-  }, []);
-
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
-  }
+  // useEffect(() => {
+  //   user && navigate('/posts')
+  // }, [user])
 
   return (
-    <main>
-      <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
-          Review next step of this tutorial.
-        </a>
-      </div>
-    </main>
-  );
+    <BrowserRouter>
+      <Header />
+      {/* <ItemList /> */}
+      {/* <PostsTitle /> */}
+      <Routes>
+        <Route path="/posts" element={<Posts />} />
+        <Route path="/" element={<MainPage />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
+
+// export const ItemList = () => {
+//   const [todos, setTodos] = useState<Schema['Todo']['type'][]>([])
+
+//   const fetchTodos = async () => {
+//     const { data: items } = await client.models.Todo.list()
+
+//     setTodos(items)
+//   }
+
+//   useEffect(() => {
+//     const sub = client.models.Todo.observeQuery().subscribe({
+//       next: ({ items }) => {
+//         setTodos([...items])
+//       },
+//     })
+
+//     return () => sub.unsubscribe()
+//   }, [])
+
+//   const createTodo = async () => {
+//     await client.models.Todo.create({
+//       content: window.prompt('Todo content?'),
+//       // isDone: false,
+//     })
+
+//     fetchTodos()
+//   }
+
+//   function deleteTodo(id: string) {
+//     console.log(id)
+
+//     client.models.Todo.delete({ id })
+//     fetchTodos()
+//   }
+//   return (
+//     <div style={{ marginTop: '200px' }}>
+//       <button onClick={createTodo}>Add new todo</button>
+//       <ul>
+//         {todos.map(({ id, content }) => (
+//           <li key={id} onClick={() => deleteTodo(id)}>
+//             {content}
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   )
+// }
