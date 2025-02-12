@@ -5,7 +5,7 @@ import './index.css'
 import { Amplify } from 'aws-amplify'
 import outputs from '../amplify_outputs.json'
 import '@aws-amplify/ui-react/styles.css'
-import { Authenticator, Image, View } from '@aws-amplify/ui-react'
+import { Authenticator, View } from '@aws-amplify/ui-react'
 Amplify.configure(outputs)
 const components = {
   Header() {
